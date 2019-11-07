@@ -19,9 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   Item.findAll().then(items => {
-    console.log(items);
-  });
-  res.send(`<!DOCTYPE html>
+    res.send(`<!DOCTYPE html>
   <html>
   <head>
     <meta charset="UTF-8">
@@ -70,6 +68,7 @@ app.get("/", (req, res) => {
     
   </body>
   </html>`);
+  });
 });
 
 app.post("/", (req, res) => {
