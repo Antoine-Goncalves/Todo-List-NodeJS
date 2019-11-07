@@ -55,4 +55,8 @@ app.get("/", (req, res) => {
   </html>`);
 });
 
+app.post("/", (req, res) => {
+  res.send("POST successfully transmited !!");
+});
+
 app.listen(port);
