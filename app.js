@@ -18,6 +18,9 @@ db.authenticate()
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
+  Item.findAll().then(items => {
+    console.log(items);
+  });
   res.send(`<!DOCTYPE html>
   <html>
   <head>
