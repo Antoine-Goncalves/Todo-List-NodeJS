@@ -16,6 +16,7 @@ db.authenticate()
   });
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   Item.findAll().then(items => {
@@ -56,7 +57,7 @@ app.get("/", (req, res) => {
       </ul>
       
     </div>
-    
+    <script src="/js/edit.js"></script>
   </body>
   </html>`);
   });
