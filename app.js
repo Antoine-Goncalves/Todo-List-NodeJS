@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo-List NodeJS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   <body>
     <div class="container">
@@ -49,7 +50,7 @@ app.get("/", (req, res) => {
               <li class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
               <span class="item-text">${item.dataValues.item}</span>
               <div>
-                <button class="edit-me btn btn-success btn-sm mr-1">Editer</button>
+                <button data-id="${item.dataValues.id}" class="edit-me btn btn-success btn-sm mr-1">Editer</button>
                 <button class="delete-me btn btn-warning btn-sm">Supprimer</button>
               </div>
             </li>`;
@@ -78,8 +79,14 @@ app.post("/", (req, res) => {
 });
 
 app.post("/update-item", (req, res) => {
-  console.log(req.body.itemUpdated);
-  res.send("test reussi");
+  Item.update(
+    { item: req.body.itemUpdated },
+    {
+      where: {
+        id: req.body.id
+      }
+    }
+  );
 });
 
 app.listen(port);
