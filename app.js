@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const port = 1410;
 
+const Item = require("./models/Item");
+
 const db = require("./config/database");
 
 db.authenticate()
@@ -68,8 +70,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body.item);
-  res.send("POST successfully transmited !!");
+  Item.findAll().then(items => {
+    console.log("All items:", JSON.stringify(items, null, 4));
+  });
+  res.send("Form successfully transmited !!");
 });
 
 app.listen(port);
